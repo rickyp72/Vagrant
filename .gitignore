@@ -12,6 +12,6 @@ Makefile.in
 /install-sh
 /missing
 .DS_Store
-/wordpress
+wordpress/*
 ._*
 
