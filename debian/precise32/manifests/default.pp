@@ -9,12 +9,12 @@ service { "apache2":
   ensure  => "running",
   require => Package["apache2"],
 }
-# file { "/var/www/sample-webapp":
-#   ensure  => "link",
-#   target  => "/vagrant/sample-webapp",
-#   require => Package["apache2"],
-#   notify  => Service["apache2"],
-# }
+file { "/var/www/sample-webapp":
+  ensure  => "link",
+  target  => "/vagrant/sample-webapp",
+  require => Package["apache2"],
+  notify  => Service["apache2"],
+}
 # package { "php5":
 # 	ensure => present,
 # }
@@ -23,19 +23,19 @@ service { "apache2":
 # 	require => Package["php5"],
 # }
 # 
-# package { "nginx":
-# 	ensure => present,
+package { "nginx":
+	ensure => present,
+
+}
 # 
-# }
-# 
-# service { "nginx":
-# 	ensure => "running",
-# 	require => Package["nginx"],
-# }
-# 
-# file { "/usr/share/nginx/www/sample-webapp":
-#   ensure  => "link",
-#   target  => "/vagrant/sample-webapp",
-#   require => Package["nginx"],
-#   notify  => Service["nginx"],
-# }
+service { "nginx":
+	ensure => "running",
+	require => Package["nginx"],
+}
+
+file { "/usr/share/nginx/www/sample-webapp":
+  ensure  => "link",
+  target  => "/vagrant/sample-webapp",
+  require => Package["nginx"],
+  notify  => Service["nginx"],
+}
