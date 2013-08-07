@@ -1,9 +1,15 @@
 
 Vagrant.configure("2") do |config|
-  #config.vm.box = "centos64_64"
 
-	#config.vm.provision :shell, :inline => "echo $HOSTNAME"
-	config.vm.provision :puppet
+	
+	config.vm.provision :puppet do |puppet|
+    	puppet.manifests_path = "manifests"
+    	puppet.manifest_file = "site.pp"
+  	end
+
+
+	config.vm.provision :shell, :inline => "echo This is host $HOSTNAME"
+	#config.vm.provision :puppet
 	
 	config.vm.define :rh1 do |rh1|
 	rh1.vm.box = "web"

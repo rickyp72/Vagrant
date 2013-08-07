@@ -1,3 +1,0 @@
-user {'ricky':
-	ensure => present,
-}
