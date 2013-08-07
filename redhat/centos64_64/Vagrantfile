@@ -1,5 +1,27 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos64_64"
+  #config.vm.box = "centos64_64"
+
+	#config.vm.provision :shell, :inline => "echo Hello"
+	config.vm.provision :puppet
+	
+	config.vm.define :rh1 do |rh1|
+	rh1.vm.box = "web"
+	config.vm.hostname = "rh1.localdomain"
+	config.vm.network :private_network, ip: "192.168.50.10"
+	end
+
+	config.vm.define :rh2 do |rh2|
+	rh2.vm.box = "web"
+	config.vm.hostname = "rh2.localdomain"
+	config.vm.network :private_network, ip: "192.168.50.11"	
+	end
+
+	config.vm.define :rh3 do |rh3|
+	rh3.vm.box = "web"
+	config.vm.hostname = "rh3.localdomain"
+	config.vm.network :private_network, ip: "192.168.50.12"
+	end
+
+
 end

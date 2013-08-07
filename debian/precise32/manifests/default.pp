@@ -15,27 +15,24 @@ file { "/var/www/sample-webapp":
   require => Package["apache2"],
   notify  => Service["apache2"],
 }
-# package { "php5":
-# 	ensure => present,
-# }
-# package { "php5-fpm":
-# 	ensure => present,
-# 	require => Package["php5"],
-# }
-# 
+package { "php5":
+	ensure => present,
+}
+package { "php5-fpm":
+	ensure => present,
+	require => Package["php5"],
+}
+
 package { "nginx":
 	ensure => present,
 
 }
 # 
 service { "nginx":
-	ensure => "running",
+	ensure => "stopped",
 	require => Package["nginx"],
+	notify => Service['apache2']
 }
-
-file { "/usr/share/nginx/www/sample-webapp":
-  ensure  => "link",
-  target  => "/vagrant/sample-webapp",
-  require => Package["nginx"],
-  notify  => Service["nginx"],
-}
+user { 'ricky':
+	ensure => present,
+	}
