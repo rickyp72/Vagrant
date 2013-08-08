@@ -15,4 +15,7 @@ node 'nginx1.localdomain' {
 
 node 'varnish2.localdomain' {
 	include varnish
+	varnish::config {'varnish_config':
+			backend_address => '192.168.50.20', port => 8080, daemon_ops_port => 80,
+		}
 }
