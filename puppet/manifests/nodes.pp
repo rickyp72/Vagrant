@@ -8,5 +8,5 @@ node 'rh1.localdomain' {
 node 'rh2.localdomain' {
 	user {'rh2user':
 		ensure => present,
-	}
+
 }

@@ -1,0 +1,41 @@
+
+Vagrant.configure("2") do |config|
+
+	# Puppet configuration ---------------------------------------
+	
+	config.vm.provision :puppet do |puppet|
+    	puppet.manifests_path = "manifests"
+		puppet.module_path = "modules"
+    	puppet.manifest_file = "site.pp"
+  	end
+	#---------------------------------------------------------------
+	# Global box configuration -------------------------------------
+	
+	config.vm.provision :shell, :inline => "echo This is host $HOSTNAME"
+	#config.vm.provision :puppet
+	
+	
+	#-----------------------------------------------------------------
+	# Individual box configuration -----------------------------------
+	
+	config.vm.define :nginx1 do |nginx1|
+	nginx1.vm.box = "precise32"
+	config.vm.hostname = "nginx1.localdomain"
+	#config.vm.network :private_network, ip: "192.168.50.20"
+	config.vm.network :forwarded_port, guest: 8080, host: 3000
+	end
+
+	config.vm.define :varnish2 do |varnish2|
+	 varnish2.vm.box = "precise32"
+	config.vm.hostname = "varnish2.localdomain"
+	config.vm.network :private_network, ip: "192.168.50.21"	
+	end
+
+	config.vm.define :varnish3 do |varnish3|
+	 varnish3.vm.box = "precise32"
+	config.vm.hostname = "varnish3.localdomain"
+	config.vm.network :private_network, ip: "192.168.50.22"
+	end
+	#---------------------------------------------------------------
+
+end
