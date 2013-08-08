@@ -1,4 +1,7 @@
 # THIS FILE IS MANAGED BY "PUPPET" Do not edit on the server
+#
+#This is the ERB file.
+#
 # This is a basic VCL configuration file for varnish.  See the vcl(7)
 # man page for details on VCL syntax and semantics.
 #
@@ -6,8 +9,8 @@
 # server.
 #
 backend default {
-    .host = "192.168.50.20";
-    .port = "8080";
+    .host = "<%= @backend_address %>";
+    .port = "<%= @port %>";
 }
 #
 # Below is a commented-out copy of the default VCL logic.  If you
