@@ -1,4 +1,4 @@
-define varnish::config( $backend_address, $port, $daemon_ops_port = 6081 ){
+define varnish::config( $backend_address, $backend_port = 80, $daemon_ops_port = 6081 ){
 	
 	file {"/etc/varnish/default.vcl":
 		content => template('varnish/default.vcl.erb'),
