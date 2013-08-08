@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define :nginx1 do |nginx1|
 	nginx1.vm.box = "precise32"
 	config.vm.hostname = "nginx1.localdomain"
-	#config.vm.network :private_network, ip: "192.168.50.20"
+	config.vm.network :private_network, ip: "192.168.50.20"
 	config.vm.network :forwarded_port, guest: 8080, host: 3000
 	end
 
@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
 	 varnish2.vm.box = "precise32"
 	config.vm.hostname = "varnish2.localdomain"
 	config.vm.network :private_network, ip: "192.168.50.21"	
+	config.vm.network :forwarded_port, guest: 6081, host: 3030
 	end
 
 	config.vm.define :varnish3 do |varnish3|
