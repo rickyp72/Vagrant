@@ -5,6 +5,7 @@ class varnish {
 }
 
 	file {'/etc/varnish/default.vl':
+		ensure => file,
 		source => 'puppet:///modules/varnish/test_default.vcl',
 		notify => Service["varnish"],
 	}
